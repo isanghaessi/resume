@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홍승용 | Backend Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2a9d8f;
+  --primary-light: #d4f0ec;
+  --primary-dark: #1a7a6e;
+  --accent: #264653;
+  --accent-light: #dce8ec;
+  --gray-50: #f8faf9;
+  --gray-100: #f0f4f3;
+  --gray-200: #e0e7e5;
+  --gray-300: #c8d4d0;
+  --gray-500: #6b7f78;
+  --gray-700: #374843;
+  --gray-900: #1a2b25;
+  --orange: #e76f51;
+  --orange-light: #fdf0ec;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  color: var(--gray-700);
+  line-height: 1.7;
+  background: var(--gray-100);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  padding: 48px 56px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+
+.profile-info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-info .subtitle {
+  font-size: 1rem;
+  opacity: 0.85;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.profile-info .intro-text {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  opacity: 0.92;
+  font-weight: 300;
+}
+
+.profile-info .intro-text .hl {
+  background: rgba(255,255,255,0.2);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.contact-bar {
+  background: #1a2b25;
+  padding: 14px 56px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.contact-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.contact-bar a:hover { opacity: 1; }
+
+.contact-bar .label {
+  font-weight: 500;
+  opacity: 1;
+  margin-right: 6px;
+}
+
+.content { padding: 0 56px 56px; }
+
+.section { margin-top: 48px; }
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px 16px;
+  align-items: start;
+}
+
+.skill-category {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--gray-900);
+  padding-top: 4px;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.skill-tag {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.skill-tag.infra {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.skill-tag.frontend {
+  background: var(--orange-light);
+  color: var(--orange);
+}
+
+.experience-card {
+  border-left: 3px solid var(--primary);
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.experience-card .company {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.experience-card .role {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.experience-card .period {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+
+.experience-card .desc {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+}
+
+.project-card {
+  background: var(--gray-50);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 20px;
+  border: 1px solid var(--gray-200);
+}
+
+.project-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+.project-card h3 .project-num {
+  color: var(--primary);
+  margin-right: 4px;
+}
+
+.star-section {
+  margin-bottom: 14px;
+}
+
+.star-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.star-label.situation { background: #fef3c7; color: #92400e; }
+.star-label.task { background: #d4f0ec; color: #1a7a6e; }
+.star-label.action { background: #d1fae5; color: #065f46; }
+.star-label.result { background: #dce8ec; color: #264653; }
+
+.star-section p, .star-section ul {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  line-height: 1.8;
+}
+
+.star-section ul {
+  padding-left: 18px;
+}
+
+.star-section ul li {
+  margin-bottom: 4px;
+}
+
+.star-section .hl {
+  background: #fef9c3;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  background: var(--gray-200);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--primary-dark);
+}
+
+.oss-card {
+  background: var(--gray-50);
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid var(--gray-200);
+}
+
+.oss-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.oss-meta {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  margin-bottom: 16px;
+}
+
+.oss-meta a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.oss-meta a:hover { text-decoration: underline; }
+
+.cert-row, .edu-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.cert-row:last-child, .edu-row:last-child { border-bottom: none; }
+
+.cert-name, .edu-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--gray-900);
+  flex: 1;
+}
+
+.cert-name a {
+  color: var(--gray-900);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--gray-300);
+}
+
+.cert-name a:hover { color: var(--primary); }
+
+.cert-org, .edu-detail {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+.cert-date, .edu-period {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  min-width: 80px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .container { margin: 0; border-radius: 0; }
+  .profile-header { flex-direction: column; padding: 32px 24px; text-align: center; }
+  .contact-bar { padding: 12px 24px; justify-content: center; }
+  .content { padding: 0 24px 40px; }
+  .skill-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cert-row, .edu-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .cert-date, .edu-period { text-align: left; }
+}
+
+@media print {
+  body { background: #fff; }
+  .container { margin: 0; box-shadow: none; border-radius: 0; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="profile-header">
+    <img src="profile.png" alt="홍승용 프로필 사진" class="profile-photo">
+    <div class="profile-info">
+      <h1>홍승용 <span style="font-size:0.6em;font-weight:300;opacity:0.7">Seungyong Hong</span></h1>
+      <div class="subtitle">Backend Engineer</div>
+      <div class="intro-text">
+        <span class="hl">Java/Spring</span> 기반 백엔드 엔지니어로서 일 평균 약 <span class="hl">3만 건</span>의 고객 문의를 처리하는 네이버 고객상담 플랫폼의 운영과 개발을 담당했습니다.
+        <span class="hl">Ansible</span>과 <span class="hl">Managed Kubernetes</span>로 구성된 인프라를 운영했습니다. <span class="hl">CKA</span> 자격을 보유하고 있으며, Kubernetes 환경에서의 애플리케이션 배포·운영·트러블슈팅에 대한 탄탄한 인프라 이해도를 가지고 있습니다.
+        오픈소스에 직접 기여함으로써 사용하는 기술의 이해도를 높이고 친숙해지려고 합니다.
+        빠르진 않지만 착실히 앞으로 나아가는 개발자입니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <a href="mailto:jesse1231@naver.com"><span class="label">Email</span>jesse1231@naver.com</a>
+    <a href="https://github.com/isanghaessi" target="_blank"><span class="label">GitHub</span>github.com/isanghaessi</a>
+    <a href="https://blog.naver.com/isanghae_ssi" target="_blank"><span class="label">Blog</span>blog.naver.com/isanghae_ssi</a>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="skill-grid">
+        <div class="skill-category">Language</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+        </div>
+        <div class="skill-category">Backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Spring Web</span>
+          <span class="skill-tag">Spring Batch</span>
+          <span class="skill-tag">MyBatis</span>
+        </div>
+        <div class="skill-category">Frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag frontend">React</span>
+          <span class="skill-tag frontend">Vue</span>
+        </div>
+        <div class="skill-category">Infra · DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag infra">Kubernetes</span>
+          <span class="skill-tag infra">Docker</span>
+          <span class="skill-tag infra">GitHub Actions</span>
+          <span class="skill-tag infra">Jenkins</span>
+          <span class="skill-tag infra">Ansible</span>
+          <span class="skill-tag infra">Apache</span>
+          <span class="skill-tag infra">Nginx</span>
+        </div>
+        <div class="skill-category">Database</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Oracle</span>
+        </div>
+        <div class="skill-category">Cloud</div>
+        <div class="skill-tags">
+          <span class="skill-tag infra">AWS S3</span>
+          <span class="skill-tag infra">Object Storage</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="experience-card">
+        <div class="company">N Tech Service <span style="font-weight:400;font-size:0.85rem;color:var(--gray-500)">(네이버 계열사)</span></div>
+        <div class="role">백엔드 엔지니어</div>
+        <div class="period">2022.02 ~ 현재</div>
+        <div class="desc">네이버 서비스를 이용하는 수천만 사용자의 고객 문의를 처리하는 <strong>고객상담 플랫폼(콜·메일·채팅)</strong>의 풀스택 개발과 운영을 담당하고 있습니다.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Projects</div>
+
+      <div class="project-card">
+        <h3><span class="project-num">01.</span> 네이버 메일 고객 상담 시스템 리뉴얼 — 리버스 엔지니어링 기반 재구축</h3>
+        <div class="star-section">
+          <span class="star-label situation">Situation</span>
+          <p>네이버 고객상담 메일 시스템이 오랜 기간 운영되면서 시스템이 노후화된 상태였습니다. 레거시 코드베이스의 복잡도가 높아 기능 추가·수정 시 사이드 이펙트 파악이 어렵고, 유지보수 비용이 지속적으로 증가하고 있었습니다. 동시에 IDC 이중화를 위해 DB를 <span class="hl">Oracle에서 MySQL</span>로 전환하는 작업도 병행했습니다.</p>
+        </div>
+        <div class="star-section">
+          <span class="star-label task">Task</span>
+          <ul>
+            <li>노후화된 메일 고객 상담 시스템을 <span class="hl">새로운 코드베이스로 완전히 재구축</span>해야 했습니다.</li>
+            <li>기존 시스템의 요구사항 문서가 부재한 상황에서 현행 시스템의 동작을 정확히 파악하고, 신규 시스템의 스펙을 도출해야 했습니다.</li>
+            <li>Oracle 관련 쿼리를 MySQL 쿼리로 변환해야 했습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label action">Action</span>
+          <ul>
+            <li>기존 레거시 기능들을 서브 태스크로 나누어 <span class="hl">리버스 엔지니어링</span>을 통해 분석하였습니다.</li>
+            <li>분석 후 운영 측과 확정된 스펙에 따라서 코드 베이스를 새로 작성하였습니다.</li>
+            <li>Oracle 쿼리를 MySQL 쿼리로 변환했습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label result">Result</span>
+          <ul>
+            <li>노후 시스템을 완전히 새로운 코드베이스로 재구축하여 <span class="hl">서비스 전환 완료</span></li>
+            <li>리버스 엔지니어링을 통해 스펙 확정</li>
+            <li>기능 추가·수정 시 영향도 파악이 용이한 구조로 개선, 유지보수 비용 절감</li>
+            <li>Oracle → MySQL DB 전환 완료</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><span class="project-num">02.</span> SMS 발송 시스템 전면 개편 — 사내 서비스 전환 및 배치 아키텍처 리팩토링</h3>
+        <div class="star-section">
+          <span class="star-label situation">Situation</span>
+          <ul>
+            <li>기존에 사용하던 사내 SMS 발송 서비스가 deprecated되어 신규 서비스로의 전환이 필요했습니다. WEB, BATCH 등 여러 컴포넌트에 걸쳐 SMS 발송 로직이 산재해 있었습니다.</li>
+            <li>전환 후 <span class="hl">타임아웃·데드락</span> 오류가 특정 시간대에 발생하고, <span class="hl">1건의 발송 실패 시 전체 배치가 롤백되어 처음부터 다시 발송</span>되는 치명적인 구조적 결함이 있어서 핫픽스가 필요했습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label task">Task</span>
+          <ul>
+            <li>deprecated된 사내 SMS 발송 서비스를 리뉴얼된 SMS 발송 서비스로 전환해야 했습니다.</li>
+            <li>발송 요청 책임에서 발송 확인 책임이 추가되어 발송 확인 여부를 확인해야 했습니다.</li>
+            <li>특정 시간대에 타임아웃·데드락 오류가 나는 버그를 수정해야 했습니다.</li>
+            <li>1건의 오류 발생 시 처리 중인 데이터가 롤백되어 SMS가 다시 발송되는 버그를 수정해야 했습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label action">Action</span>
+          <ul>
+            <li>deprecated된 기존 SMS API를 신규 서비스 API로 전환했습니다. 발송 여부 확인에 대한 책임이 추가되면서 복잡도가 증가하였습니다.</li>
+            <li>복잡도가 증가하면서 한 테이블을 여러 Job에서 바라보는 상황을 <span class="hl">Tasklet에서 Chunk 기반</span>으로 전환하여 타임아웃 오류를 해결하였습니다.</li>
+            <li>잘못 사용된 <code>@Transactional</code> 어노테이션을 제거하여 1건 실패 시 SMS가 모두 재발송되는 오류를 해결하였습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label result">Result</span>
+          <ul>
+            <li>deprecated된 사내 SMS 서비스에서 <span class="hl">신규 서비스로 전환 완료</span></li>
+            <li>전환 시 발생한 오류(타임아웃, 전체 실패와 재시도) 해결</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><span class="project-num">03.</span> 고객상담시스템 웹서버 인프라 전환 (Apache → Nginx)</h3>
+        <div class="star-section">
+          <span class="star-label situation">Situation</span>
+          <p>네이버 고객상담시스템을 구성하는 <span class="hl">10개 이상의 컴포넌트</span>가 Apache HTTP Server를 웹서버로 사용하고 있었습니다. Apache에서 빈번하게 발생하는 보안 취약점(CVE)으로 인해 긴급 패치가 반복되었고, 이에 대한 운영 부담이 지속적으로 증가하고 있었습니다.</p>
+        </div>
+        <div class="star-section">
+          <span class="star-label task">Task</span>
+          <p>고객상담시스템 전체 서비스의 웹서버를 <span class="hl">Apache에서 Nginx</span> 최신 버전으로 일괄 전환해야 했습니다.</p>
+        </div>
+        <div class="star-section">
+          <span class="star-label action">Action</span>
+          <ul>
+            <li>10개 이상의 컴포넌트의 Apache 설정을 분석하고, Nginx 설정으로 1:1 변환하여 작성했습니다.</li>
+            <li>Kubernetes를 사용하는 컴포넌트의 베이스 이미지를 Apache에서 Nginx 기반으로 변경하여 빌드했습니다.</li>
+            <li>각 서비스별로 Ansible로 관리되는 서버 환경을 Nginx 기반으로 변경하여 적용했습니다. 문제가 발생할 시를 대비하여 롤백이 가능한 구조를 중간에 두어 대비했습니다.</li>
+            <li>Tomcat 연동을 <span class="hl">AJP에서 HTTP</span>로 변경하였습니다.</li>
+            <li>컴포넌트별 순차적 전환 및 롤백 전략을 수립했습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label result">Result</span>
+          <ul>
+            <li>10개 이상의 서비스에 대해 <span class="hl">Nginx 전환 완료</span></li>
+            <li>Apache 관련 CVE 긴급 패치 운영 부담 제거</li>
+            <li>Nginx의 이벤트 기반 아키텍처 전환으로 정적 파일 서빙 성능 및 메모리 효율 개선</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Open Source Contribution</div>
+      <div class="oss-card">
+        <h3>Micrometer — <code>@Observed</code> 애너테이션 기반 KeyValue 태깅 기능 구현</h3>
+        <div class="oss-meta">
+          <a href="https://github.com/micrometer-metrics/micrometer/pull/6667" target="_blank">PR #6667</a> · Merged, 2025.10 · +1,323 / -12, 15 files changed
+        </div>
+        <div class="star-section">
+          <span class="star-label situation">Situation</span>
+          <p>Micrometer의 <code>@Observed</code> 애너테이션은 low cardinality key-value만 상수로 지정할 수 있었습니다. 메서드 파라미터를 기반으로 high·low cardinality key-value를 동적으로 추가하려면, AOP 방식을 포기하고 <code>Observation.createNotStarted()</code>를 직접 호출하는 장황한 보일러플레이트 코드를 작성해야 했습니다. (<a href="https://github.com/micrometer-metrics/micrometer/issues/5826" target="_blank">Issue #5826</a>)</p>
+        </div>
+        <div class="star-section">
+          <span class="star-label task">Task</span>
+          <p><code>@Timed</code>·<code>@Counted</code>에서 <code>@MeterTag</code>가 제공하는 파라미터 기반 태깅 경험을, <code>@Observed</code> 애너테이션에서도 동일하게 사용할 수 있도록 신규 애너테이션과 AOP 처리기를 설계·구현해야 했습니다.</p>
+        </div>
+        <div class="star-section">
+          <span class="star-label action">Action</span>
+          <ul>
+            <li><code>@ObservedKeyValueTag</code>·<code>@ObservedKeyValueTags</code> 애너테이션을 설계하여, 메서드 파라미터에 선언적으로 key-value를 바인딩할 수 있도록 구현했습니다.</li>
+            <li><code>ObservedKeyValueTagAnnotationHandler</code>를 구현하여, 파라미터 스캔 → 값 평가(static·<code>ValueResolver</code>·<code>ValueExpressionResolver</code>) → <code>Observation.Context</code>에 key-value 주입까지의 전체 파이프라인을 AOP로 처리하도록 했습니다.</li>
+            <li><code>ObservedAspect</code>를 확장하여, 핸들러 주입 시에만 기능이 활성화되는 방식으로 기존 코드에 대한 하위 호환성을 보장했습니다.</li>
+            <li>Micrometer 핵심 메인테이너(@jonatan-ivanov, @shakuzen)와의 설계 논의에서, <code>AnnotationHandler</code>의 타입 파라미터 한계로 인한 <span class="hl">다운캐스팅 vs 새로운 추상화</span> 도입에 대해 기술적 트레이드오프를 분석하고 합의를 이끌어냈습니다.</li>
+          </ul>
+        </div>
+        <div class="star-section">
+          <span class="star-label result">Result</span>
+          <ul>
+            <li>Micrometer 메인 브랜치에 <span class="hl">Merge 완료</span> (코어 메인테이너 2인 Approved)</li>
+            <li><code>@Observed</code> 사용 시 보일러플레이트 코드 제거, 선언적 key-value 태깅 API 제공</li>
+            <li>해당 기능의 설계 과정과 기술적 의사결정을 <a href="https://blog.naver.com/isanghae_ssi" target="_blank">기술 블로그</a>에 상세히 기록</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Certification</div>
+      <div class="cert-row">
+        <div class="cert-name"><a href="https://www.credly.com/badges/b494965e-8043-4381-b3a2-934ff9b72517/public_url" target="_blank">CKA (Certified Kubernetes Administrator)</a></div>
+        <div class="cert-org">The Linux Foundation · CNCF</div>
+        <div class="cert-date">2026.03</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu-row">
+        <div class="edu-name">네이버 부스트캠프 6기</div>
+        <div class="edu-detail">웹·모바일</div>
+        <div class="edu-period">2021</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-name">인천대학교</div>
+        <div class="edu-detail">임베디드시스템공학과</div>
+        <div class="edu-period">2015 ~ 2021</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
