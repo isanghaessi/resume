@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홍승용 | Full-Stack Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2a9d8f;
+  --primary-light: #d4f0ec;
+  --primary-dark: #1a7a6e;
+  --accent: #264653;
+  --accent-light: #dce8ec;
+  --gray-50: #f8faf9;
+  --gray-100: #f0f4f3;
+  --gray-200: #e0e7e5;
+  --gray-300: #c8d4d0;
+  --gray-500: #6b7f78;
+  --gray-700: #374843;
+  --gray-900: #1a2b25;
+  --orange: #e76f51;
+  --orange-light: #fdf0ec;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  color: var(--gray-700);
+  line-height: 1.7;
+  background: var(--gray-100);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  padding: 48px 56px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+
+.profile-info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-info .subtitle {
+  font-size: 1rem;
+  opacity: 0.85;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.profile-info .intro-text {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  opacity: 0.92;
+  font-weight: 300;
+}
+
+.profile-info .intro-text .hl {
+  background: rgba(255,255,255,0.2);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.contact-bar {
+  background: #1a2b25;
+  padding: 14px 56px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.contact-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.contact-bar a:hover { opacity: 1; }
+
+.contact-bar .label {
+  font-weight: 500;
+  opacity: 1;
+  margin-right: 6px;
+}
+
+.content { padding: 0 56px 56px; }
+
+.section { margin-top: 48px; }
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px 16px;
+  align-items: start;
+}
+
+.skill-category {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--gray-900);
+  padding-top: 4px;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.skill-tag {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.skill-tag.infra {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.skill-tag.frontend {
+  background: var(--orange-light);
+  color: var(--orange);
+}
+
+.experience-card {
+  border-left: 3px solid var(--primary);
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.experience-card .company {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.experience-card .role {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.experience-card .period {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+
+.experience-card .desc {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+}
+
+.project-card {
+  background: var(--gray-50);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 20px;
+  border: 1px solid var(--gray-200);
+}
+
+.project-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+.project-card h3 .project-num {
+  color: var(--primary);
+  margin-right: 4px;
+}
+
+.star-section {
+  margin-bottom: 14px;
+}
+
+.star-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.star-label.situation { background: #fef3c7; color: #92400e; }
+.star-label.task { background: #d4f0ec; color: #1a7a6e; }
+.star-label.action { background: #d1fae5; color: #065f46; }
+.star-label.result { background: #dce8ec; color: #264653; }
+
+.star-section p, .star-section ul {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  line-height: 1.8;
+}
+
+.star-section ul {
+  padding-left: 18px;
+}
+
+.star-section ul li {
+  margin-bottom: 4px;
+}
+
+.star-section ul ul {
+  margin-top: 4px;
+  padding-left: 16px;
+  list-style-type: '— ';
+}
+
+.star-section ul ul li {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+.star-section .hl {
+  background: #fef9c3;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  background: var(--gray-200);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--primary-dark);
+}
+
+.oss-card {
+  background: var(--gray-50);
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid var(--gray-200);
+}
+
+.oss-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.oss-meta {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  margin-bottom: 16px;
+}
+
+.oss-meta a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.oss-meta a:hover { text-decoration: underline; }
+
+.cert-row, .edu-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.cert-row:last-child, .edu-row:last-child { border-bottom: none; }
+
+.cert-name, .edu-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--gray-900);
+  flex: 1;
+}
+
+.cert-name a {
+  color: var(--gray-900);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--gray-300);
+}
+
+.cert-name a:hover { color: var(--primary); }
+
+.cert-org, .edu-detail {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+.cert-date, .edu-period {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  min-width: 80px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .container { margin: 0; border-radius: 0; }
+  .profile-header { flex-direction: column; padding: 32px 24px; text-align: center; }
+  .contact-bar { padding: 12px 24px; justify-content: center; }
+  .content { padding: 0 24px 40px; }
+  .skill-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cert-row, .edu-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .cert-date, .edu-period { text-align: left; }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm 10mm;
+  }
+
+  body {
+    background: #fff;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  .container {
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  .profile-header {
+    padding: 32px 40px;
+    gap: 28px;
+    break-inside: avoid;
+  }
+
+  .profile-photo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .contact-bar {
+    padding: 10px 40px;
+  }
+
+  .content {
+    padding: 0 40px 32px;
+  }
+
+  .section {
+    margin-top: 32px;
+  }
+
+  .project-card, .oss-card {
+    break-inside: avoid;
+  }
+
+  .star-section {
+    break-inside: avoid;
+  }
+
+  .experience-card {
+    break-inside: avoid;
+  }
+
+  .cert-row, .edu-row {
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  .oss-meta a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="profile-header">
+    <img src="../profile.png" alt="홍승용 프로필 사진" class="profile-photo">
+    <div class="profile-info">
+      <h1>홍승용 <span style="font-size:0.6em;font-weight:300;opacity:0.7">Seungyong Hong</span></h1>
+      <div class="subtitle">Full-Stack Engineer</div>
+      <div class="intro-text">
+        <span class="hl">Java/Spring</span> 기반 백엔드 엔지니어로서 일 평균 약 <span class="hl">3만 건</span>의 고객 문의를 처리하는 네이버의 고객상담 플랫폼의 운영과 개발을 담당했습니다. 레거시 개선, 배치 안정화, 인프라 전환을 성공적으로 이끈 경험이 있습니다.
+        전통적인 VM 방식(<span class="hl">Ansible</span>)과 <span class="hl">Managed Kubernetes</span>로 구성된 인프라를 운영했습니다. <span class="hl">CKA</span> 자격을 보유하고 있으며, Kubernetes 환경에서의 애플리케이션 배포·운영·트러블슈팅에 대한 탄탄한 인프라 이해도를 가지고 있습니다.
+        사용하고 있는 오픈소스(<span class="hl">Spring</span>, <span class="hl">Micrometer</span>)에 직접 기여함으로써 사용하는 언어와 기술의 이해도를 높이고 있습니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <a href="mailto:jesse1231@naver.com"><span class="label">Email</span>jesse1231@naver.com</a>
+    <a href="https://github.com/isanghaessi" target="_blank"><span class="label">GitHub</span>github.com/isanghaessi</a>
+    <a href="https://blog.naver.com/isanghae_ssi" target="_blank"><span class="label">Blog</span>blog.naver.com/isanghae_ssi</a>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="skill-grid">
+        <div class="skill-category">Backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Spring Batch</span>
+          <span class="skill-tag">JPA</span>
+          <span class="skill-tag">MyBatis</span>
+        </div>
+        <div class="skill-category">Infra</div>
+        <div class="skill-tags">
+          <span class="skill-tag infra">Kubernetes</span>
+          <span class="skill-tag infra">Ansible</span>
+          <span class="skill-tag infra">Nginx</span>
+          <span class="skill-tag infra">Jenkins</span>
+          <span class="skill-tag infra">GitHub Actions</span>
+        </div>
+        <div class="skill-category">Database</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Oracle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="experience-card">
+        <div class="company">N Tech Service <span style="font-weight:400;font-size:0.85rem;color:var(--gray-500)">(네이버 계열사)</span></div>
+        <div class="role">백엔드 엔지니어</div>
+        <div class="period">2022.02 ~ 현재</div>
+        <div class="desc">
+          <ul>
+            <li>네이버 전 서비스 고객 문의 처리 플랫폼 개발 및 운영</li>
+            <li>레거시 시스템 현대화 및 인프라 최적화 주도</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Key Projects</div>
+
+      <div class="project-card">
+        <h3><span class="project-num">01.</span> 네이버 메일 고객 상담 시스템 리뉴얼</h3>
+        <div class="star-section">
+          <ul>
+            <li><strong>리버스 엔지니어링</strong>을 통해 레거시 분석 스펙 확정과 최신 프레임워크와 코드로 새로 작성.</li>
+            <li>IDC 이중화시 비용 절감을 위한 데이터베이스 전환 <strong>Oracle → MySQL</strong> 성공.</li>
+            <li>Service 레이어 <strong>TC Line Coverage 100%</strong> 달성으로 코드 품질 및 유지보수성 확보.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><span class="project-num">02.</span> SMS 발송 시스템 성능 최적화</h3>
+        <div class="star-section">
+          <ul>
+            <li><strong>데드락 및 타임아웃 문제 해결</strong>: 인덱스 최적화 및 배치 아키텍처(Tasklet → Chunk) 개선.</li>
+            <li><strong>중복 발송 문제 해결</strong>: 트랜잭션 범위를 재정의하여 발송 신뢰성 확보.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><span class="project-num">03.</span> 웹서버 전환을 통한 인프라 최적화</h3>
+        <div class="star-section">
+          <ul>
+            <li><strong>Apache → Nginx 전환</strong>: Event-driven 아키텍처 기반 대용량 처리 성능 확보와 보안 취약점 패치 지옥 탈출.</li>
+            <li><strong>k8s 사이드카 패턴 적용</strong>: nginx의 로그 rotate를 위한 사이드카 컨테이너 구현.</li>
+            <li><strong>성능 최적화</strong>: 정적 자원 직접 서빙 설정과 액세스 로그 비활성화로 컨테이너 부하 경감.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><span class="project-num">04.</span> 배치 잡 중복 실행 방지</h3>
+        <div class="star-section">
+          <ul>
+            <li><strong>비동기로 동작하는 Job</strong>: 비동기로 동작하여 겹칠 수 있는 Job을 위한 <code>JobExecutionListener</code> 구현.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3><span class="project-num">05.</span> 슬로우 쿼리 튜닝</h3>
+        <div class="star-section">
+          <ul>
+            <li><strong>슬로우 쿼리 튜닝</strong>: SQL 실행 계획 최적화를 통한 통계 조회 API 성능 대폭 향상.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section">
+      <div class="section-title">Open Source</div>
+      <div class="oss-card">
+        <h3>Micrometer — <code>@Observed</code> 애너테이션 기반 KeyValue 동적 태깅 기능 구현</h3>
+        <div class="star-section" style="margin-top:12px;">
+          <ul>
+            <li><strong>신규 기능 추가</strong>: <code>@Observed</code> 애너테이션에 동적 key-value를 추가할 수 있는 기능 개발.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Certification</div>
+      <div class="cert-row">
+        <div class="cert-name">Certified Kubernetes Administrator (CKA)</div>
+        <div class="cert-org">CNCF</div>
+        <div class="cert-date">2026.03</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu-row">
+        <div class="edu-name">네이버 부스트캠프 6기 수료</div>
+        <div class="edu-period">2021</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-name">인천대학교 임베디시스템공학과 졸업</div>
+        <div class="edu-period">2015 ~ 2021</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
